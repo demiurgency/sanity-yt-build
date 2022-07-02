@@ -4,6 +4,7 @@ import { Post } from '../../typings';
 import PortableText from 'react-portable-text';
 //import {PortableText} from '@portabletext/react'
 import { Children } from 'react';
+import { GetStaticProps } from 'next'
 
 interface Props {
   post: Post;
@@ -87,7 +88,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const query = `*[_type == "post" && slug.current == $slug][0]{
      _id,
      _createdAt,
