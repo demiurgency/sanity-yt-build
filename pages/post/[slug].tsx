@@ -42,14 +42,13 @@ function Post({ post }: Props) {
   };
 
   return (
-    <main>
+    <main className='mb-10'>
       <Header />
       <img
         className='w-full h-40 object-cover'
         src={urlFor(post.mainImage).url()}
         alt=''
       />
-
       <article className='max-w-3xl mx-auto p-5'>
         <h1 className='text-3xl mt-10 mb-3'>{post.title}</h1>
         <h2 className='text-xl font-light text-gray-500 mb-2'>
@@ -95,7 +94,9 @@ function Post({ post }: Props) {
       <hr className='max-w-lg my-5 mx-auto border border-yellow-500' />
       {submitted ? (
         <div className='flex flex-col p-10 my-10 bg-yellow-500 text-white max-w-2xl mx-auto  '>
-          <h3 className='text-3xl font-bold'>Thank you for submtited your comment!</h3>
+          <h3 className='text-3xl font-bold'>
+            Thank you for submtited your comment!
+          </h3>
           <p>Once it is approved it will appear below.</p>
         </div>
       ) : (
@@ -163,6 +164,19 @@ function Post({ post }: Props) {
           />
         </form>
       )}
+      {/* Comments */}
+      <div className='flex flex-col p-10 max-w-2xl mx-auto shadow-yellow-500 shadow space-y-2'>
+        <h3 className='text-4xl'>Comments</h3>
+        <hr className='pb-2' />
+        {post.comments.map((comment) => (
+          <div key={comment._id}>
+            <p>
+              <span className='text-yellow-500'>{comment.name}:</span>{' '}
+              {comment.comment}
+            </p>
+          </div>
+        ))}
+      </div>
     </main>
   );
 }
